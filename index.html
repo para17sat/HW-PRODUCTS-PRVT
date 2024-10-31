@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BASIC/DEPT® - Digital Branding & Product Design</title>
+    <style>
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; color: #252422; background-color: #f4f4f4; overflow-x: hidden; }
+        
+    
+        .main-header {
+            background: transparent;
+            padding: 10px 0;
+            color: #fff;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s;
+        }
+        .main-header.scrolled { background: #000; }
+        
+
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .nav-links { list-style: none; display: flex; gap: 20px; }
+        .nav-links li a { color: white; text-decoration: none; font-size: 1rem; transition: color 0.3s; }
+        .nav-links li a:hover { color: #f2a900; }
+        .hamburger { display: none; cursor: pointer; font-size: 1.5rem; color: white; }
+        
+        
+        .hero-section {
+            position: relative; height: 100vh; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; text-align: center; padding: 20px;
+        }
+        .hero-section img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
+        .hero-content { position: relative; z-index: 1; }
+        .hero-section h1, .hero-section p { animation: fadeIn 2s ease-out; }
+        .cta-button { padding: 10px 20px; background-color: rgb(60, 43, 95); color: black; text-decoration: none; border-radius: 5px; transition: background 0.3s, transform 0.3s; }
+        .cta-button:hover { background-color: #d18a00; transform: scale(1.05); }
+        
+        
+        .section { display: flex; align-items: center; justify-content: center; padding: 60px 20px; text-align: left; background-color: #f4f4f4; }
+        .content-wrapper { display: flex; align-items: center; justify-content: space-between; gap: 20px; max-width: 1000px; width: 100%; padding: 0 20px; }
+        .text-content { max-width: 400px; color: rgb(56, 30, 63); opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .text-content.appear { opacity: 1; transform: translateY(0); }
+        .section img { width: 100%; height: 60vh; object-fit: cover; border-radius: 15px; max-width: 600px; transition: transform 0.3s ease-out, filter 0.3s ease-out; }
+        .section img:hover { transform: scale(1.05); filter: brightness(1.1); }
+
+    
+        @media (max-width: 768px) {
+            .content-wrapper { flex-direction: column; }
+            .hero-section h1 { font-size: 1.8rem; }
+            .nav-links { display: none; flex-direction: column; gap: 10px; background-color: #000; position: absolute; top: 60px; right: 0; width: 100%; padding: 20px; }
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+        }
+        
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <nav class="navbar">
+            <a href="#" class="logo">BASIC/DEPT®</a>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <ul class="nav-links">
+                <li><a href="#about">MERCEDES</a></li>
+                <li><a href="#services">ADIDAS</a></li>
+                <li><a href="#contact">NIKE</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="hero" class="hero-section">
+        <img src="https://images.squarespace-cdn.com/content/v1/651c3a6199c20a6c48df0769/15ef8611-eb33-4378-aa20-44c497a31923/LOCP_STATIC_CLEAN_GIF_LOOP-optimized.gif" alt="Background Animation" />
+        <div class="hero-content">
+            <h1>Digital Branding & Product Design Agency</h1>
+            <p>Designing experiences for leading brands globally.</p>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="content-wrapper">
+            <img src="https://i.pinimg.com/736x/ba/90/c9/ba90c9a53c06775318a966e2da8f2378.jpg" alt="About Us Image" />
+            <div class="text-content">
+                <h2>MERCEDES</h2>
+                <p>A dream doesn’t become reality through magic; it takes sweat, determination, and hard work.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section">
+        <div class="content-wrapper">
+            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/8dedb020827301.58cace8ca3bfa.jpg" alt="Our Services Image" />
+            <div class="text-content">
+                <h2>ADIDAS</h2>
+                <p>IMPOSSIBLE IS NOTHING</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="content-wrapper">
+            <img src="https://i.pinimg.com/originals/5a/1f/14/5a1f1427297721879ffd52e88c019a0f.jpg" alt="Contact Us Image" />
+            <div class="text-content">
+                <h2>NIKE</h2>
+                <p>JUST DO IT</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <p>© BASIC/DEPT® Agency</p>
+    </footer>
+    
+    <script>
+
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        
+        const textSections = document.querySelectorAll('.text-content');
+        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        
+        const appearOnScroll = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('appear');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        textSections.forEach(section => appearOnScroll.observe(section));
+
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+    
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.main-header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
+</body>
+</html>
